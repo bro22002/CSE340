@@ -21,3 +21,9 @@ README.md
 
 # ignore lock yaml file
 pnpm-lock.yaml
+
+.vscode
+# vscode debugger setup for CSE Motors
+# launch.json
+
+# assignment2.sql
