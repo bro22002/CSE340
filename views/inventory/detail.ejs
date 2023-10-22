@@ -1,0 +1,9 @@
+<!-- Build the Content Heading using the same value of the <title> built in the contoller -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+
+<%- grid %>

@@ -14,7 +14,7 @@ Util.getNav = async function ( req, res, next) {
         list +=
             '<a href="/inv/type/' + 
             row.classification_id +
-            '"title="See our inventory of ' +
+            '" title="See our inventory of ' +
             row.classification_name +
             ' vehicles">' +
             row.classification_name +
@@ -37,11 +37,11 @@ Util.buildClassificationGrid = async function(data){
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + ' details"><img src="' + vehicle.inv_thumbnail 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
+      +' on CSE Motors"></a>'
       grid += '<div class="namePrice">'
-      grid += '<hr />'
+      grid += '<hr>'
       grid += '<h2>'
       grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
       + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
@@ -58,5 +58,50 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+
+/* **************************************
+* Function to Build the inventory view HTML
+* ************************************ */
+Util.buildInventoryGrid = async function(data){
+  let grid
+  if(data.length > 0) {
+    grid = '<ul id="inv-detail">'
+    data.forEach(vehicle => { 
+      grid += '<li>'
+      grid +=   
+      // + '" title="' + vehicle.inv_make + ' '+ vehicle.inv_model 
+      '<img src="' + vehicle.inv_image 
+      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+      +' on CSE Motors">' + '</li>'
+      grid += '<li class="namePrice">'
+      grid += '<li class="flex-detail">' + '<h2>'
+      grid += 
+      + vehicle.inv_year + ' '+ vehicle.inv_make + ' ' + vehicle.inv_model
+      grid += '</h2>'
+      grid += '<span><strong>Price: $' 
+      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</strong>'+'</span>'
+      grid += '<span><strong>Mileage:</strong>' + ' ' 
+      + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</span>'
+      grid += '<span><strong>Color:</strong>' + ' ' + vehicle.inv_color + '</span>'
+      grid += '<p><strong>Desc:</strong>' + ' ' + vehicle.inv_description + '</p>'
+      grid += '</li>'
+      // grid += '</li>'
+    })
+    grid += '</ul>'
+  } else { 
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+  }
+  return grid
+}
+
+
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 module.exports = Util

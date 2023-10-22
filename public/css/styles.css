@@ -179,6 +179,59 @@ figure figcaption {
   margin-bottom: 1em;
 }
 
+#inv-display {
+  align-items: center;
+  list-style: none;
+  margin: 0 1rem 2.5rem;
+}
+
+#inv-display li {
+  border: 1px solid rgba(175, 161, 161, 0.7);
+  border-radius: 5%;
+  overflow: hidden;
+  margin: .5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+div.namePrice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0 .5rem;
+}
+
+div.namePrice span {
+  font-weight: bold;
+}
+
+div.namePrice h2,
+div.namePrice span {
+  padding: .5rem;
+}
+
+div.namePrice hr {
+  width: 100%;
+}
+
+#inv-display li a img,
+#inv-detail li img {
+  width: 100%;
+}
+
+#inv-detail li {
+  list-style: none;
+}
+
+.flex-detail {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(204, 204, 187, 0.7);
+}
+
 /* Footer styles */
 footer p {
   margin-top: 0;
@@ -289,5 +342,25 @@ footer p {
   
   #upgrades, #review {
     margin-top: 0;
+  }
+
+  #inv-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin: 0 1rem 2.5rem;
+  }
+
+  #inv-detail li img {
+  width: auto;
+}
+
+
+  #inv-display li {
+    margin: 0;
+  }
+
+  #inv-detail {
+    display: flex;
   }
 }
