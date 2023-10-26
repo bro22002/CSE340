@@ -1,0 +1,22 @@
+<!-- Build the Content Heading using the same value of the <title> built in the contoller -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Build a message block for future proofing of our view -->
+<%- messages() %>
+
+<fieldset>
+  <form action="/" method="post">
+      <label for="account_email">Email:</label>
+      <input type="email" name="account_email" id="account_email" required>
+  
+      <label for="account_password">Password:</label>
+      <input type="password" name="account_password" id="account_password" required>
+  
+      <input type="submit" value="LOGIN">
+  </form>
+</fieldset>
+<p>No account?<a href="/account/register">Sign Up</a></p>
