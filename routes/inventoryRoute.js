@@ -10,7 +10,7 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 // Route to build inventory items by detail view (inv_id)
 router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInventoryId));
 
-// Route to generate a 500-type error
-router.get("/error500", invController.buildBy500Type);
+// Route to generate a 500-type error view
+router.get("/error", utilities.handleErrors(invController.build500TypeError));
 
 module.exports = router;

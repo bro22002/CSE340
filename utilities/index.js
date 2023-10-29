@@ -70,11 +70,9 @@ Util.buildInventoryGrid = async function(data){
     data.forEach(vehicle => { 
       grid += '<li>'
       grid +=   
-      // + '" title="' + vehicle.inv_make + ' '+ vehicle.inv_model 
       '<img src="' + vehicle.inv_image 
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors">' + '</li>'
-      grid += '<li class="namePrice">'
       grid += '<li class="flex-detail">' + '<h2>'
       grid += 
       + vehicle.inv_year + ' '+ vehicle.inv_make + ' ' + vehicle.inv_model
@@ -86,7 +84,6 @@ Util.buildInventoryGrid = async function(data){
       grid += '<span><strong>Color:</strong>' + ' ' + vehicle.inv_color + '</span>'
       grid += '<p><strong>Desc:</strong>' + ' ' + vehicle.inv_description + '</p>'
       grid += '</li>'
-      // grid += '</li>'
     })
     grid += '</ul>'
   } else { 

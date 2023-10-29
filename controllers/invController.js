@@ -38,15 +38,19 @@ invCont.buildByInventoryId = async function (req, res, next) {
 /* ***************************
  *  Build 505-type error view
  * ************************** */
-invCont.buildBy500Type = async function (req, res, next) {
+invCont.build500TypeError = async function (req, res, next) {
   let nav = await utilities.getNav();
-  // Simulate a 500-type error by throwing an error
+  try {
+    throw new Error("Intentional 500-Type Error");
+  } catch (error) {
+    // Pass the error to the next middleware
+    next(error);
+  }
   res.render("./errors/error", {
-    title: "Error!",
+    title: "500",
+    message: "Intentional 500-Type Error",
     nav,
   })
-  // throw new Error("Intentional 500-Type Error")   
 }
-
 
 module.exports = invCont
