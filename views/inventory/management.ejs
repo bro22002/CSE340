@@ -1,0 +1,20 @@
+<!-- Build the Content Heading using the same value of the <title> built in the contoller -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Build a message block for future proofing of our view -->
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<a href="./add-classification" title="Click to add new Classification">Add New Classification</a><br>
+<a href="./add-inventory" title="Click to add new Inventory">Add New Inventory</a>

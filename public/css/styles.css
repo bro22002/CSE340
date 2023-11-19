@@ -234,6 +234,42 @@ div.namePrice hr {
   padding: 1rem;
 }
 
+.notice {
+  background-color: #ffb6c1;
+  font-style: italic;
+  padding: 1rem;
+  margin-left: .3rem;
+  width: fit-content;
+}
+
+/* account form styling */
+.account-form {
+  display: grid;
+  gap: 1.5rem;
+  width: min(20rem, 100%);
+  margin: auto;
+}
+
+.form-group {
+  display: grid;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.input-hint {
+  margin: 0;
+  font-size: 1rem;
+  color: hsl(0 0% 70%);
+}
+
+input {
+  padding: 0.5rem 0.75rem;
+}
+
+input::placeholder {
+  font-size: 1rem;
+}
+
 /* Footer styles */
 footer p {
   margin-top: 0;
