@@ -111,7 +111,7 @@ invCont.addClassification = async function(req, res) {
 /* ****************************************
 *  Process Add Inventory
 * *************************************** */
-invCont.buildAddInventory = async function(req, res) {
+invCont.addInventory = async function(req, res) {
   let nav = utilities.getNav()
   const { classification_name, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_year, inv_miles, inv_color } = req.body
   

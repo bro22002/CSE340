@@ -28,17 +28,14 @@ router.post(
     "/add-classification",
     invValidate.classificationRules(),
     invValidate.checkClassificationData,
-    // (req, res) => {
-    //     res.status(200)
-    // },
     utilities.handleErrors(invController.addClassification)
 )
 
 // Route to process the add new inventory data and send data to the database
 router.post(
     "/add-inventory",
-    invValidate.inventoryRules(),
-    // invValidate.checkInventoryData,
+    // invValidate.inventoryRules(),
+    invValidate.checkInventoryData,
     utilities.handleErrors(invController.addInventory)
 )
 

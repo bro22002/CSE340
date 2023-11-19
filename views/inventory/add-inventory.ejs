@@ -19,8 +19,8 @@
 <form action="/inv/add-inventory" method="post">
     <fieldset>
         <p>ALL FIELDS ARE REQUIRED</p>
-        <!-- <label for="classification_name">Classification</label><br>
-        <select name="classification_name" id="classification_name" required value="<%#= locals.classification_name %>">
+        <label for="classification_id">Classification</label>
+        <!-- <select name="classification_name" id="classification_name" required value="<%#= locals.classification_name %>">
             <option selected disabled hidden>Choose a Classification</option>
             <option value="1">Custom</option>
             <option value="2">Sport</option>
@@ -31,32 +31,32 @@
 
         <%- classification %>
 
-        <label for="inv_make">Make</label><br>
-        <input type="text" name="inv_make" id="inv_make" required value="<%= locals.inv_make %>"><br>
+        <label for="inv_make">Make</label>
+        <input type="text" name="inv_make" id="inv_make" required value="<%= locals.inv_make %>">
 
-        <label for="inv_model">Model</label><br>
-        <input type="text" name="inv_model" id="inv_model" required value="<%= locals.inv_model %>"><br>
+        <label for="inv_model">Model</label>
+        <input type="text" name="inv_model" id="inv_model" required value="<%= locals.inv_model %>">
 
-        <label for="inv_description">Description</label><br>
-        <textarea name="inv_description" id="inv_description" cols="30" rows="10" required value="<%= locals.inv_description %>"></textarea><br>
+        <label for="inv_description">Description</label>
+        <textarea name="inv_description" id="inv_description" cols="30" rows="10" required></textarea>
 
-        <label for="inv_image">Image Path</label><br>
-        <input type="text" value="<%= locals.inv_image %>"><br>
+        <label for="inv_image">Image Path</label>
+        <input type="text" name="inv_image" id="inv_image" required value="<%= locals.inv_image %>">
+        
+        <label for="inv_thumbnail">Thumbnail Path</label>
+        <input type="text" name="inv_thumbnail" id="inv_thumbnail" required value="<%= locals.inv_thumbnail %>">
 
-        <label for="inv_thumbnail">Thumbnail Path</label><br>
-        <input type="text" value="<%= locals.inv_thumbnail %>"><br>
+        <label for="inv_price">Price</label>
+        <input type="number" name="inv_price" id="inv_price" required min="1" value="<%= locals.inv_price %>">
 
-        <label for="inv_price">Price</label><br>
-        <input type="number" name="inv_price" id="inv_price" required min="1" value="<%= locals.inv_price %>"><br>
+        <label for="inv_year">Year</label>
+        <input type="number" name="inv_year" id="inv_year" required min="1000" max="9999" value="<%= locals.inv_year %>">
 
-        <label for="inv_year">Year</label><br>
-        <input type="number" name="inv_year" id="inv_year" required min="1000" max="9999" value="<%= locals.inv_year %>"><br>
+        <label for="inv_miles">Miles</label>
+        <input type="number" name="inv_miles" id="inv_miles" required value="<%= locals.inv_miles %>">
 
-        <label for="inv_miles">Miles</label><br>
-        <input type="number" name="inv_miles" id="inv_miles" required value="<%= locals.inv_miles %>"><br>
-
-        <label for="inv_color">Color</label><br>
-        <input type="text" name="inv_color" id="inv_color" required value="<%= locals.inv_color %>"><br>
+        <label for="inv_color">Color</label>
+        <input type="text" name="inv_color" id="inv_color" required value="<%= locals.inv_color %>">
 
         <input type="submit" value="Add Vehicle">
     </fieldset>

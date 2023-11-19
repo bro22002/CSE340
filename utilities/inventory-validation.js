@@ -68,7 +68,7 @@ validate.inventoryRules = () => {
 
         body("inv_color")
         .trim()
-        .withMessage("Please provide a color"),
+        .withMessage("Please provide a color")
 
     ]
 }
@@ -85,6 +85,26 @@ validate.checkClassificationData = async (req, res, next) => {
         res.render("inventory/add-classification", {
             errors,
             title: "Add Classification",
+            nav,
+            classification_name
+        })
+        return
+    }
+    next()
+}
+
+/*  **********************************
+ *  Check inventory data and return errors or continue to add inventory
+ * ********************************* */
+validate.checkInventoryData = async (req, res, next) => {
+    const {classification_name} = req.body
+    let errors = []
+    errors = validationResult(req)
+    if(!errors.isEmpty()) {
+        let nav = await utilities.getNav()
+        res.render("inventory/add-inventory", {
+            errors,
+            title: "Add Inventory",
             nav,
             classification_name
         })
