@@ -17,6 +17,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const accountController = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
+const invController = require("./controllers/invController")
 
 
 /* ***********************
@@ -67,9 +68,6 @@ app.use("/inv", inventoryRoute)
 
 // Account route
 app.use("/account", utilities.handleErrors(accountController))
-
-// 500-type Error route
-app.use("/inv", inventoryRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
