@@ -1,0 +1,41 @@
+<!-- Build the Content Heading using the same value of the <title> built in the contoller -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Build a message block for future proofing of our view -->
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<form action="/inv/delete-inventory" method="post">
+    <fieldset>
+        <p>Confirm Deletion - The delete is permanent.</p>
+        <label for="classification_id">Classification</label>
+
+        <%#- classificationSelect %>
+
+        <label for="inv_make">Make</label>
+        <input type="text" name="inv_make" id="inv_make" required value="<%= locals.inv_make %>" readonly>
+
+        <label for="inv_model">Model</label>
+        <input type="text" name="inv_model" id="inv_model" required value="<%= locals.inv_model %>" readonly>
+        
+        <label for="inv_price">Price</label>
+        <input type="number" name="inv_price" id="inv_price" required min="1" value="<%= locals.inv_price %>" readonly>
+
+        <label for="inv_year">Year</label>
+        <input type="number" name="inv_year" id="inv_year" required min="1000" max="9999" value="<%= locals.inv_year %>" readonly>
+
+        <input type="hidden" name="inv_id"<% if(locals.inv_id) { %> value="<%= locals.inv_id %>"<% } %> readonly>
+        <input type="submit" value="Delete">
+    </fieldset>
+</form>

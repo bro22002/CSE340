@@ -23,6 +23,16 @@ router.get("/add-classification", utilities.handleErrors(invController.buildAddC
 // Route to build add-inventory view
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
 
+// Route to build the edit inventory view
+router.get("/edit/:inventoryId", utilities.handleErrors(invController.buildEditInventory))
+
+router.get("/delete/:inventoryIfd", utilities.handleErrors(invController.deleteView))
+
+router.get(
+    "/getInventory/:classification_id",
+    // utilities.checkAccountType,
+    utilities.handleErrors(invController.getInventoryJSON))
+
 // Route to process the add new classification data and send data to the database
 router.post(
     "/add-classification",
@@ -37,6 +47,18 @@ router.post(
     // invValidate.inventoryRules(),
     invValidate.checkInventoryData,
     utilities.handleErrors(invController.addInventory)
+)
+
+// Route to process the update for the inventory edit
+router.post(
+    "/edit-inventory/", 
+    invValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory)
+)
+
+router.post(
+    "/delete-inventory",
+    utilities.handleErrors(invController.deleteItem)
 )
 
 module.exports = router;

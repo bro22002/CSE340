@@ -11,6 +11,14 @@ router.get("/login", utilities.handleErrors(accountController.buildLogin));
 // Route to build the registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 
+// Route to build the account update view
+router.get("/update/:account_id", utilities.handleErrors(accountController.buildUpdate))
+
+// Route to handle the login request(default account route)
+router.get("/", 
+    utilities.checkLogin,
+    utilities.handleErrors(accountController.buildManagement))
+
 // Route to process the registration data and send data to the database
 router.post(
     '/register',
@@ -21,12 +29,17 @@ router.post(
 // process the login attempt
 router.post(
     "/login",
-    (req, res) => {
-        res.status(200).send('login process')
-    },
     regValidate.loginRules(),
-    regValidate.ckeckLoginData,
-    utilities.handleErrors(accountController.loginAccount),
+    regValidate.checkLoginData,
+    utilities.handleErrors(accountController.accountLogin),
+)
+
+// Route to handle account update request
+router.post(
+    "/update/:account_id",
+    regValidate.updateRules(),
+    regValidate.checkUpdateData,
+    utilities.handleErrors(accountController.updateAccount)
 )
 
 module.exports = router

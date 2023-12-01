@@ -40,6 +40,11 @@ header#top-header {
   justify-content: space-between;
 }
 
+.siteLogo{
+  display: flex;
+  align-items: center;
+}
+
 header a {
   align-self: center;
   text-decoration: none;
@@ -236,10 +241,23 @@ div.namePrice hr {
 
 .notice {
   background-color: #ffb6c1;
+  color: #323939;
   font-style: italic;
   padding: 1rem;
   margin-left: .3rem;
-  width: fit-content;
+  /* width: fit-content; */
+  display: inline-block;
+  border-radius: .2rem;
+}
+
+.success {
+  background-color: #f5fffa;
+  color: #323939;
+  font-style: italic;
+  padding: 1rem;
+  margin-left: .3rem;
+  display: inline-block;
+  border-radius: .2rem;
 }
 
 /* account form styling */

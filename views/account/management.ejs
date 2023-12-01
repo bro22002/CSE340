@@ -16,17 +16,6 @@
  </ul>
 <% } %>
 
-<a href="./add-classification" title="Click to add new Classification">Add New Classification</a><br>
-<a href="./add-inventory" title="Click to add new Inventory">Add New Inventory</a><br>
+<p>You're logged in</p>
 
 <a href="./update/<%= locals.accountData.account_id %>" title="Click to update account">Edit Account Information</a>
-
-<h2>Manage Inventory</h2>
-<p>Choose a classification to see those inventory items</p>
-<%- classification %>
-
-<table id="inventoryDisplay"></table>
-
-<noscript>JavaScript must be enabled to use this page.</noscript>
-
-<script src="../../js/inventory.js"></script>
