@@ -15,18 +15,32 @@ router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByI
 router.get("/error", utilities.handleErrors(invController.build500TypeError));
 
 // Route to build the management view
-router.get('/', utilities.handleErrors(invController.buildManagement))
+router.get('/',
+    utilities.checkAccount,
+    utilities.handleErrors(invController.buildManagement))
 
 // Route to build add-classification view
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
+router.get(
+    "/add-classification", 
+    utilities.checkAccount,
+    utilities.handleErrors(invController.buildAddClassification));
 
 // Route to build add-inventory view
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
+router.get(
+    "/add-inventory", 
+    utilities.checkAccount,
+    utilities.handleErrors(invController.buildAddInventory));
 
 // Route to build the edit inventory view
-router.get("/edit/:inventoryId", utilities.handleErrors(invController.buildEditInventory))
+router.get(
+    "/edit/:inventoryId", 
+    utilities.checkAccount,
+    utilities.handleErrors(invController.buildEditInventory))
 
-router.get("/delete/:inventoryIfd", utilities.handleErrors(invController.deleteView))
+router.get(
+    "/delete/:inventoryId", 
+    utilities.checkAccount,
+    utilities.handleErrors(invController.deleteView))
 
 router.get(
     "/getInventory/:classification_id",

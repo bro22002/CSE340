@@ -3,13 +3,17 @@
     <span class="siteName">
       <a class="siteLogo" href="/" title="Return to home page">
         <img src="/images/site/icon.png" alt="">
-        
-        CSE Motors</a>
+        CSE Motors
+      </a>
     </span>
   </h1>
   <div id="tools">
-    <a title="Click to navigate to account management view" href="/account/">WELCOME</a>
-    <a title="Click to log out" href="/account/logout">LOGOUT</a>
-    <a title="Click to log in" href="/account/login">MY ACCOUNT</a>
+    <% if (locals.accountData) { %>
+      <a title="Click to navigate to account management view" href="/account/">WElCOME <%= accountData.account_firstname.toUpperCase() %></a>
+      <a title="Click to log out" href="/account/logout">LOGOUT <% locals.clearCookie %></a>
+    <% } else { %>
+      <a title="Click to log in" href="/account/login">MY ACCOUNT</a>
+    <% } %>
+    
   </div>
 </header>

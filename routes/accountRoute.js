@@ -5,8 +5,14 @@ const accountController = require("../controllers/accountController")
 const utilities = require("../utilities")
 const regValidate = require("../utilities/account-validation")
 
+router.use(utilities.checkJWTToken)
+
 // Route to build the account view
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
+router.get(
+    "/logout",
+    utilities.logout,
+)
 
 // Route to build the registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
@@ -31,15 +37,23 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
+    // utilities.checkAccount,
     utilities.handleErrors(accountController.accountLogin),
 )
 
 // Route to handle account update request
 router.post(
-    "/update/:account_id",
+    "/update-account",
     regValidate.updateRules(),
     regValidate.checkUpdateData,
     utilities.handleErrors(accountController.updateAccount)
+)
+
+router.post(
+    "/change-password",
+    regValidate.passwordRules(),
+    regValidate.checkPasswordData,
+    utilities.handleErrors(accountController.updatePassword)
 )
 
 module.exports = router

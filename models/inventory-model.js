@@ -59,7 +59,7 @@ async function addNewClassification(classification_name) {
  * ************************** */
 async function addNewInventory(classification_name, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_year, inv_miles, inv_color) {
   try {
-    const sql = "INSERT INTO inventory (classification_name, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_year, inv_miles, inv_color) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *"
+    const sql = "INSERT INTO public.inventory (classification_name, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_year, inv_miles, inv_color) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *"
     return await pool.query(sql, [classification_name, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_year, inv_miles, inv_color])
   } catch (error) {
     return error.message

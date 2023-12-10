@@ -41,10 +41,10 @@
         <textarea name="inv_description" id="inv_description" cols="30" rows="10" required></textarea>
 
         <label for="inv_image">Image Path</label>
-        <input type="text" name="inv_image" id="inv_image" required value="<%= locals.inv_image %>">
+        <input type="text" name="inv_image" id="inv_image" required value="/images/vehicles/no-image.png" value="<%= locals.inv_image %>">
         
         <label for="inv_thumbnail">Thumbnail Path</label>
-        <input type="text" name="inv_thumbnail" id="inv_thumbnail" required value="<%= locals.inv_thumbnail %>">
+        <input type="text" name="inv_thumbnail" id="inv_thumbnail" required value="/images/vehicles/no-image-tn.png" value="<%= locals.inv_thumbnail %>">
 
         <label for="inv_price">Price</label>
         <input type="number" name="inv_price" id="inv_price" required min="1" value="<%= locals.inv_price %>">

@@ -33,7 +33,7 @@ Util.getNav = async function ( req, res, next) {
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
   let classificationList =
-  '<select name="classification_id" id="classification_id" value="<%#= locals.classification_name %>">'
+  '<select name="classification_id" id="classification_id" value="<%= locals.classification_name %>">'
   classificationList += "<option selected disabled hidden>Choose a Classification</option>"
   data.rows.forEach((row) => {
     classificationList += '<option value="' + row.classification_id + '"'
@@ -120,6 +120,7 @@ Util.buildInventoryGrid = async function(data){
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
+  res.locals.loggedin = 0
   if (req.cookies.jwt) {
     jwt.verify(
       req.cookies.jwt,
@@ -152,7 +153,33 @@ Util.checkLogin = (req, res, next) => {
   }
 }
 
+Util.logout = (req, res, next) => {
+  res.clearCookie("jwt")
+  // res.loggedin = 0,
+  // next(),
+  return res.redirect("/")
+}
 
+Util.checkAccount = (req, res, next) => {
+  // Check if the user is logged in
+  if (res.locals.loggedin) {
+    // Check if the account type is "Employee" or "Admin"
+    if (
+      res.locals.accountData.account_type === "Employee" ||
+      res.locals.accountData.account_type === "Admin"
+    ) {
+      // User has the correct account type, proceed to the next middleware
+      next();
+    } else {
+      req.flash("notice", "Insufficient privileges.")
+      return res.redirect("/account/login")
+    }
+  } else {
+    // User is not logged in, redirect to login page
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+}
 
 /* ****************************************
  * Middleware For Handling Errors

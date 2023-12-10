@@ -88,6 +88,7 @@ async function getAccountById(account_id) {
 * Update account
 * ***************************** */
 async function updateAccount(account_id, account_firstname, account_lastname, account_email) {
+    // account_id = parseInt(account_id)
     try {
         const sql = "UPDATE account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4 RETURNING *"
         const data = await pool.query(sql, [
@@ -96,7 +97,7 @@ async function updateAccount(account_id, account_firstname, account_lastname, ac
             account_email,
             account_id
         ])
-        return data.row[0]
+        return data.rows[0]
     } catch (error) {
         console.log("model error:" + error);
     }
@@ -105,18 +106,29 @@ async function updateAccount(account_id, account_firstname, account_lastname, ac
 /* *****************************
 * Update password
 * ***************************** */
-async function updatePassword(account_id, account_password) {
+// async function updatePassword(account_id, account_password) {
+//     try {
+//         const sql = "UPDATE account SET account_password = $1 WHERE account_id = $2"
+//         const data = await pool.query(sql, [
+//             account_password,
+//             account_id
+//         ])
+//         return data.rows[0]
+//     } catch (error) {
+//         console.log("model error:" + error);
+//     }
+// }
+
+async function updatePassword(account_password, account_id) {
     try {
-        const sql = "UPDATE account SET account_password = $1  WHERE account_id = $2 RETURNING *"
-        const data = await pool.query(sql, [
-            account_id,
-            account_password
-        ])
-        return data.row[0]
+      const result = await pool.query(
+        'UPDATE account SET account_password = $1 WHERE account_id = $2',
+        [account_password, account_id])
+      return result.rowCount
     } catch (error) {
-        console.log("model error:" + error);
+      console.error("changeaccountpassword error " + error)
     }
-}
+  }
 
 
 module.exports = { registerAccount, checkExistingEmail, checkExistingPassword, loginAccount, getAccountByEmail, getAccountById, updateAccount, updatePassword }

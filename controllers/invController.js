@@ -81,6 +81,7 @@ invCont.buildAddInventory = async function (req, res, next) {
 *  Process add-classsification
 * *************************************** */
 invCont.addClassification = async function(req, res) {
+  let classificationSelect = await utilities.buildClassificationList()
   // let nav = await utilities.getNav()
   const { classification_name } = req.body
   console.log("Received data:", classification_name);
@@ -100,6 +101,7 @@ invCont.addClassification = async function(req, res) {
     res.status(201).render("./inventory/management",{
       title:"Management",
       nav,
+      classification: classificationSelect,
       errors:null,
     })
   } else {
@@ -115,7 +117,8 @@ invCont.addClassification = async function(req, res) {
 *  Process Add Inventory
 * *************************************** */
 invCont.addInventory = async function(req, res) {
-  let nav = utilities.getNav()
+  let classificationSelect = await utilities.buildClassificationList()
+  let nav = await utilities.getNav()
   const { classification_name, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_year, inv_miles, inv_color } = req.body
   
   const addResult = await invModel.addNewInventory(
@@ -137,6 +140,7 @@ invCont.addInventory = async function(req, res) {
     res.status(201).render("./inventory/management",{
       title:"Management",
       nav,
+      classification: classificationSelect,
       errors:null,
     })
   } else {
